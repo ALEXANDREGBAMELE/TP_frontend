@@ -12,11 +12,11 @@ export class AppComponent implements OnInit {
   activeItem: MenuItem;
   ngOnInit() {
       this.items = [
-          { label: 'Home', icon: 'pi pi-fw pi-home',routerLink:'/home'},
-          { label: 'Calendar', icon: 'pi pi-fw pi-calendar' },
-          { label: 'Edit', icon: 'pi pi-fw pi-pencil' },
+          { label: 'Accueil', icon: 'pi pi-fw pi-home',routerLink:'/home'},
+          { label: 'Calendrier', icon: 'pi pi-fw pi-calendar' },
+          { label: 'Modifier', icon: 'pi pi-fw pi-pencil' },
           { label: 'Documentation', icon: 'pi pi-fw pi-file' },
-          { label: 'Personne', icon: 'pi pi-fw pi-user', routerLink:'/liste' }
+          { label: 'Personnes', icon: 'pi pi-fw pi-user', routerLink:'/liste' }
       ];
 
       this.activeItem = this.items[0];

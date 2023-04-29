@@ -38,7 +38,7 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { PopupEditComponent } from './popup/popup-edit/popup-edit.component';
-
+import { KeyFilterModule } from 'primeng/keyfilter';
 
 @NgModule({
   declarations: [
@@ -80,6 +80,7 @@ import { PopupEditComponent } from './popup/popup-edit/popup-edit.component';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    KeyFilterModule,
     RouterModule.forRoot([
       {path:'',component: AppComponent}
 

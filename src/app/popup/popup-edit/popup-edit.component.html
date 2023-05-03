@@ -5,7 +5,7 @@
             <form [formGroup]="personForm" (ngSubmit)="addOrUpdatePerson()">
                 <div class="field">
                     <label for="nom" class="block">Nom : </label><br>   
-                   <input type="text" [(ngModel)]="editPerson.nom" pInputText id=""
+                   <input type="text" [(ngModel)]="editPerson.nom" pInputText
                         placeholder="Entrer votre nom de famille" formControlName="nom">
                     <small class="p-error block"
                         *ngIf="personForm.get('nom')?.invalid && personForm.get('nom')?.dirty"></small>

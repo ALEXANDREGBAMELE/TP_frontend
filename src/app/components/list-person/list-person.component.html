@@ -5,9 +5,6 @@
         <p-button label="Ajouter" class="mr-2" (click)="ouvrirPopupCreationOuModification()"><i class="pi pi-plus"
                 style="font-size: 1rem"></i></p-button>
     </div>
-    <!-- <div class="card flex justify-content-start m-4">
-        <p-button label="Edit" class="mr-2"><i class="pi pi-pencil" style="font-size: 1rem"></i></p-button>
-    </div> -->
 </div>
 
 
@@ -33,9 +30,8 @@
                 </th>
                 <th pSortableColumn="nom">Name <p-sortIcon field="nom"></p-sortIcon></th>
                 <th pSortableColumn="prenom">Prenom <p-sortIcon field="prenom"></p-sortIcon></th>
-                <th pSortableColumn="age"> Age<p-sortIcon field="age"></p-sortIcon></th>
+                <th class="px-2">	Âge  <p-columnFilter type="numeric" field="age" display="menu"></p-columnFilter></th>
                 <th pSortableColumn="departement">Departement<p-sortIcon field="departement"></p-sortIcon></th>
-
                 <th>Action</th>
             </tr>
         </ng-template>
@@ -53,13 +49,7 @@
                         <p-button icon="pi pi-pencil" styleClass="p-button-primary" class="mr-3"
                             (click)="ouvrirPopupCreationOuModification(person)"></p-button>
 
-                        <!-- <p-toast></p-toast>
-                        <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
-                        <p-button icon="pi pi-trash" styleClass="p-button-danger" class="ml-3"
-                            (click)="confirm1(person)"></p-button> -->
-
                             <div class="card flex justify-content-center">
-                                <p-toast></p-toast>
                                 <p-confirmDialog #cd [style]="{width: '50vw'}">
                                     <ng-template pTemplate="header">
                                         <h3>Confirmer Suppression</h3>
@@ -79,9 +69,6 @@
         </ng-template>
     </p-table>
 </div>
-
-
-<!-- confirm deleted person-->
     <app-popup-edit [title]="title" [editPerson]="person" [(visible)]="visible" (misajour)="getAllPeson">
     </app-popup-edit>
 

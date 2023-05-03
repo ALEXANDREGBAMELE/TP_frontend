@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Departement } from 'src/app/models/Departement';
 import { Person } from 'src/app/models/Person';
 import { PersonService } from 'src/app/services/api-service.service';
-import { DepartementService } from 'src/app/services/departement.service'
-
+import { DepartementService } from 'src/app/services/departement.service';
 @Component({
   selector: 'app-popup-edit',
   templateUrl: './popup-edit.component.html',
@@ -17,32 +16,31 @@ export class PopupEditComponent implements OnInit {
   @Input() editPerson: Person;
 
   @Input() title!: any;
-  
-  @Input() Departement : Departement;
 
-  @Output() visibleChange : EventEmitter<boolean> = new EventEmitter();
+  @Input() Departement: Departement;
 
-  constructor(private fb: FormBuilder, private personservice: PersonService, private departementService : DepartementService) {
+  @Output() visibleChange: EventEmitter<boolean> = new EventEmitter();
+
+  constructor(private fb: FormBuilder, private personservice: PersonService, private departementService: DepartementService) {
 
   }
- 
+
   personForm: FormGroup;
   person: Person;
 
   departements: Departement[];
   departementSelectionner: Departement;
- 
+
 
   ngOnInit(): void {
-    console.log(this.editPerson)
     this.personForm = this.fb.group({
       nom: [this.editPerson?.nom, Validators.required, Validators.minLength(2)],
-      prenom: [this.editPerson?.prenom, Validators.required,Validators.minLength(2)],
-      age: [this.editPerson?.age,Validators.required],
+      prenom: [this.editPerson?.prenom, Validators.required, Validators.minLength(2)],
+      age: [this.editPerson?.age, Validators.required],
       departement: [this.departementSelectionner?.designation, Validators.required]
     });
     this.getAllDepart();
-    
+
   }
 
 
@@ -53,7 +51,7 @@ export class PopupEditComponent implements OnInit {
         .subscribe({
           next: (res) => {
             this.fermerPopup();
-            },
+          },
           error: (e) => console.error(e)
         });
     }
@@ -69,22 +67,22 @@ export class PopupEditComponent implements OnInit {
     }
   }
 
-fermerPopup(){
-  this.visible = false;
-}
-onFermeture(){
-  this.visibleChange.emit(false);
-}
+  fermerPopup() {
+    this.visible = false;
+  }
 
-getAllDepart() {
-  this.departementService.getAllDepart().subscribe({
-    next: (data) => {
-      this.departements = data;
-    }
-  })
-}
+  onFermeture() {
+    this.visibleChange.emit(false);
+  }
+
+  getAllDepart() {
+    this.departementService.getAllDepart().subscribe({
+      next: (data) => {
+        this.departements = data;
+      }
+    })
+  }
 
 }
 
   //============================================================
-  

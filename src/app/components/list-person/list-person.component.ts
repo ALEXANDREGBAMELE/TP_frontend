@@ -1,9 +1,10 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { PersonService } from '../../services/api-service.service'
 import { Person } from 'src/app/models/Person';
-import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmEventType, ConfirmationService, FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Departement } from 'src/app/models/Departement';
 import { DepartementService } from './../../services/departement.service';
+import { PrimeIcons} from 'primeng/api';
 //import { Person } from './../../models/Person';
 
 @Component({
@@ -13,6 +14,7 @@ import { DepartementService } from './../../services/departement.service';
 })
 
 export class ListPersonComponent implements OnInit {
+  [x: string]: any;
 
   persons: Person[];
   person!: Person;
@@ -33,12 +35,21 @@ export class ListPersonComponent implements OnInit {
   constructor(private personService: PersonService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private departementservice: DepartementService
+    private departementservice: DepartementService,
+    private primeConfig : PrimeNGConfig,
   ) { }
 
   ngOnInit(): void {
     this.getAllDepart()
     this.getAllPeson()
+
+    this.primeConfig.filterMatchModeOptions = {text: [], numeric: [
+      FilterMatchMode.LESS_THAN,
+      FilterMatchMode.GREATER_THAN,
+      FilterMatchMode.EQUALS,
+      FilterMatchMode.LESS_THAN_OR_EQUAL_TO,
+      FilterMatchMode.GREATER_THAN_OR_EQUAL_TO,
+      ], date: []};
   }
 
   getAllPeson() {
@@ -75,7 +86,13 @@ export class ListPersonComponent implements OnInit {
   }
 
 
-  // ============OUVRIR ET FERMER==========================
+  /* 
+  * Methode ouvrir la pop-pup 
+  * Modifier ou creer un nouvel utilisateur
+  * @Param
+  */
+
+  
 
   ouvrirPopupCreationOuModification(editperson?: Person) {
     if (editperson) {
@@ -88,36 +105,6 @@ export class ListPersonComponent implements OnInit {
     }
     this.visible = true;
   }
-
-  //   ouvrirPupop() {
-  //     this.person = {};
-  //     this.submitted = false;
-  //     this.visible = true;
-
-  // }
-  // savePerson(){
-  //   this.person = {};
-  //   this.visible = true;
-  // }
-  // editerPerson(){
-  //   this.person = {... this.person};
-  //   this.visible = true;
-  // }
-
-  //   fermerDialog() {
-  //     this.visible = false;
-  //     this.submitted = false;
-  // }
-
-  //methode de confirmation de suppression user
-  //=====================================================================================
-
-
-  // confirm1(person: Person) {
-
-  //=================================================
-
-
 
   confirm1(person: Person) {
     this.confirmationService.confirm({
@@ -138,7 +125,9 @@ export class ListPersonComponent implements OnInit {
     });
   }
 
-//=========== GET DEPARTEMENT ====================
+ /* 
+  * @GET DEPARTEMENT WITHOUT PARAM 
+  */
 
 getAllDepart() {
   this.departementservice.getAllDepart().subscribe({
@@ -148,4 +137,3 @@ getAllDepart() {
   })
 }
 }
-//=============================================================================

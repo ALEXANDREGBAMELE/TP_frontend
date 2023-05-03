@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'primeng/api';
+import { MenuItem,PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,7 @@ import { MenuItem } from 'primeng/api';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title = "frontend";
   items: MenuItem[];
 
   activeItem: MenuItem;

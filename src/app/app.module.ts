@@ -32,18 +32,20 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {ToolbarModule} from 'primeng/toolbar';
 import {RatingModule} from 'primeng/rating';
 import {RadioButtonModule} from 'primeng/radiobutton';
-import {InputNumberModule} from 'primeng/inputnumber';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { PopupEditComponent } from './popup/popup-edit/popup-edit.component';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { PopupComponent } from './components/popup/popup.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ListPersonComponent,
-    PopupEditComponent,
+    PopupComponent,
 
   ],
   imports: [
@@ -73,12 +75,12 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     FileUploadModule,
     ToolbarModule,
     RatingModule,
-    FormsModule,
     RadioButtonModule,
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
     KeyFilterModule,
+    DynamicDialogModule,
     RouterModule.forRoot([
       {path:'',component: AppComponent}
 
@@ -86,7 +88,7 @@ import { KeyFilterModule } from 'primeng/keyfilter';
   ],
 
 
-  providers: [MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService, DialogModule],
   bootstrap: [AppComponent]
 
 })

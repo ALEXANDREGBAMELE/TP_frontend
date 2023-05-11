@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Person } from '../models/Person';
 import { Observable } from 'rxjs';
+import { Departement } from '../models/Departement';
 
 const baseUrl = "http://localhost:8080/api";
 
@@ -15,7 +16,7 @@ export class PersonService {
    }
 
   //methodes afficher data
-  showPerson():Observable<Person[]>{
+  getAllPersonne():Observable<Person[]>{
     return this.http.get<Person[]>(`${baseUrl}${"/personne/getAll"}`, {headers : this.httpHeader()});
   }
 
@@ -25,7 +26,7 @@ export class PersonService {
   }
 
    //methodes mise a jour user
-  updatePerson(id: number, person: Person): Observable<any> {
+  updatePerson(person: Person): Observable<any> {
     return this.http.put(`${baseUrl}${"/personne/update"}${'/id'}`, person, {headers: this.httpHeader()});
   }
 
@@ -37,6 +38,10 @@ export class PersonService {
   //methodes pour faire un get selon Id
     get(id: number): Observable<Person> {
       return this.http.get<Person>(`${baseUrl}${"/personne/getById"}${'/id'}`);
+    }
+
+    getAllDepartment():Observable<Departement[]>{
+      return this.http.get<Departement[]>(`${baseUrl}${"/departement/getAll"}`, {headers : this.httpHeader()});
     }
 
 

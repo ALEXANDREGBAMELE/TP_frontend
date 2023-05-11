@@ -1,0 +1,41 @@
+
+<p-dialog header={{title}} [(visible)]="visible" [modal]="true" [style]="{ width: '45vw' }" [draggable]="false"
+[resizable]="false" (onHide)="onFermeture()" (onShow)="onOuverture()">
+<p-card styleClass="person-form" class="justify-content-center">
+    <form [formGroup]="personForm" (ngSubmit)="addOrUpdatePerson()">
+        <div class="field">
+            <label  for="id" class="block"></label><br>   
+           <input type="hidden" formControlName="id">
+           
+        </div><br>
+        <div class="field">
+            <label for="nom" class="block">Nom : </label><br>   
+           <input type="text" pInputText
+                placeholder="Entrer votre nom de famille" formControlName="nom">
+           
+        </div><br>
+        <div class="field">
+            <label for="prenom" class="block">Prenom : </label><br>
+            <input type="text" pInputText name="nom" id=""
+                placeholder="Entrer votre prenom" formControlName="prenom">
+           
+        </div><br>
+        <div class="field">
+            <label for="age" class="block">Age : </label><br>
+            <input type="number"  pInputText name="age" id="age"
+                placeholder="Entrer votre age" formControlName="age" pKeyFilter="int"  max="200" min="1" >
+            
+        </div><br>
+        <!-- liste deroulante -->
+        <div class="card flex justify-content-center">
+            <p-dropdown [options]="departements" placeholder="Choisir un département"
+                [editable]="true" optionLabel="designation" formControlName="departement"></p-dropdown>
+        </div>
+        <!-- liste deroulante -->
+        <div class="card flex justify-content-center">
+            <button pButton label="Enregistrer" class="p-button-primary" type="submit"></button>
+        </div>
+    </form>
+</p-card>
+</p-dialog>
+<!-- ====================================================================== -->

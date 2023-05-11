@@ -1,11 +1,8 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PersonService } from '../../services/api-service.service'
 import { Person } from 'src/app/models/Person';
 import { ConfirmEventType, ConfirmationService, FilterMatchMode, MessageService, PrimeNGConfig } from 'primeng/api';
 import { Departement } from 'src/app/models/Departement';
-import { DepartementService } from './../../services/departement.service';
-import { PrimeIcons} from 'primeng/api';
-//import { Person } from './../../models/Person';
 
 @Component({
   selector: 'app-list-person',
@@ -14,11 +11,10 @@ import { PrimeIcons} from 'primeng/api';
 })
 
 export class ListPersonComponent implements OnInit {
-  [x: string]: any;
-
   persons: Person[];
   person!: Person;
   visible: boolean;
+  //dialog : any;
   departements: Departement[];
 
   // submitted : boolean;
@@ -27,17 +23,13 @@ export class ListPersonComponent implements OnInit {
   currentIndex = -1;
   title: string;
 
-  recevoirClick(etat : boolean) :void{
-    this.visible = !etat;
-  }
-
 
   constructor(private personService: PersonService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private departementservice: DepartementService,
     private primeConfig : PrimeNGConfig,
   ) { }
+
 
   ngOnInit(): void {
     this.getAllDepart()
@@ -53,7 +45,7 @@ export class ListPersonComponent implements OnInit {
   }
 
   getAllPeson() {
-    this.personService.showPerson().subscribe({
+    this.personService.getAllPersonne().subscribe({
       next: data => {
         this.persons = data;
       },
@@ -67,7 +59,7 @@ export class ListPersonComponent implements OnInit {
   refreshList(): void {
     this.getAllPeson();
     this.currentPerson = {};
-    this.currentIndex = -1;
+    // this.currentIndex = -1;
   }
 
   setActivePerson(person: Person, index: number): void {
@@ -85,15 +77,12 @@ export class ListPersonComponent implements OnInit {
       });
   }
 
-
+ 
   /* 
   * Methode ouvrir la pop-pup 
   * Modifier ou creer un nouvel utilisateur
   * @Param
   */
-
-  
-
   ouvrirPopupCreationOuModification(editperson?: Person) {
     if (editperson) {
       this.person = editperson;
@@ -103,7 +92,7 @@ export class ListPersonComponent implements OnInit {
       this.person = new Person();
       this.title = "AJOUTER"
     }
-    this.visible = true;
+    this.visible = true; 
   }
 
   confirm1(person: Person) {
@@ -130,7 +119,7 @@ export class ListPersonComponent implements OnInit {
   */
 
 getAllDepart() {
-  this.departementservice.getAllDepart().subscribe({
+  this.personService.getAllDepartment().subscribe({
     next: (data) => {
       this.departements = data;
     }
